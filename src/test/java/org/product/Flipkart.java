@@ -14,8 +14,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.test.baseclass.BaseClass;
 
-public class ProductList extends BaseClass {
-	public static void main(String[] args) throws AWTException {
+public class Flipkart extends BaseClass {
+	public static void main(String[] args) throws AWTException, InterruptedException {
 		
 		chromeLaunch();
 		maximize();
@@ -30,21 +30,25 @@ public class ProductList extends BaseClass {
         for (WebElement product : products) {
         	String text = product.getText();
         	System.out.println(text);
-		}  
-        List<WebElement> prices = driver.findElements(By.xpath(" //div[@class='_30jeq3 _1_WHN1']"));
-        for (WebElement price : prices) {
-        	String text = price.getText();
-        
-        	String re = text.substring(1);
-			if (re.contains(",")) {
-				String ss = re.replace(",", "");
-				System.out.println(ss);  
-        }
-   
-       
+		} 
+        WebElement btclick = driver.findElement(By.xpath("//span[contains(text(),'Next')]"));
+        click(btclick);
+        threadWait(5000);
+        List<WebElement> products2 = driver.findElements(By.xpath(" //div[@class='_4rR01T']"));
+        for (WebElement pro : products2) {
+        	String t = pro.getText();
+        	System.out.println(t);
 			
 		}
-        
+        WebElement bttclick = driver.findElement(By.xpath("//span[contains(text(),'Next')]"));
+        click(bttclick);
+        threadWait(5000);
+        List<WebElement> products3 = driver.findElements(By.xpath(" //div[@class='_4rR01T']"));
+        for (WebElement pr : products3) {
+        	String tx = pr.getText();
+        	System.out.println(tx);
+	
+        }
 		
 	
 			
@@ -59,10 +63,10 @@ public class ProductList extends BaseClass {
 		
 		
 		
+	}
 		
 		
 		
-		
-	}	
+	}
 
-}
+
